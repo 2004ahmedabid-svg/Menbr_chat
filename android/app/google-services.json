@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "741501842921",
+    "project_id": "menbrchat",
+    "storage_bucket": "menbrchat.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741501842921:android:c3140b1c578a2cf7cc0778",
+        "android_client_info": {
+          "package_name": "menbrchat2004ahmed.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNDgX_hyyQmJi2KWYO-b_t0VslbDo-kxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
