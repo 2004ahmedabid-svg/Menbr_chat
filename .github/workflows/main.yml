@@ -21,6 +21,7 @@ jobs:
       - run: cp pubspec.yaml menbr_temp/
       - run: cp -r lib menbr_temp/
       - run: cp android/app/google-services.json menbr_temp/android/app/
+      - run: sed -i 's/compileSdkVersion 34/compileSdkVersion 35/g' menbr_temp/android/app/build.gradle
       - run: cd menbr_temp && flutter pub get
       - run: cd menbr_temp && flutter build apk --release
       
