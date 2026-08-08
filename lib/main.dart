@@ -1,6 +1,7 @@
 // Created by 2004ahmed - حقوقي
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'auth_screen.dart'; // اضفنا دي
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +16,7 @@ class MenbrApp extends StatelessWidget {
     return MaterialApp(
       title: 'Menbr',
       theme: ThemeData.dark(),
-      home: Scaffold(body: Center(child: Text('Menbr Chat v1.0'))),
+      home: const AuthScreen(), // غيرناها من Scaffold
       debugShowCheckedModeBanner: false,
     );
   }
