@@ -1,11 +1,9 @@
-// Created by 2004ahmed - حقوقي
+// Created by 2004Ahmed - حقوقي
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'auth_screen.dart'; // اضفنا دي
+import 'auth_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   runApp(const MenbrApp());
 }
 
@@ -16,7 +14,7 @@ class MenbrApp extends StatelessWidget {
     return MaterialApp(
       title: 'Menbr',
       theme: ThemeData.dark(),
-      home: const AuthScreen(), // غيرناها من Scaffold
+      home: const AuthScreen(), // شاشة الدخول
       debugShowCheckedModeBanner: false,
     );
   }
