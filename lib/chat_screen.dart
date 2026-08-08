@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'auth_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
+
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
@@ -35,7 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
               _auth.signOut();
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => AuthScreen()));
             },
-          )
+          ),
         ],
       ),
       body: Column(
@@ -64,7 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
             padding: EdgeInsets.all(8),
             child: Row(
               children: [
-                Expanded(child: TextField(controller: _messageController, decoration: InputDecoration(hintText: 'اكتب رسالتك...'))),
+                Expanded(child: TextField(controller: _messageController, decoration: InputDecoration(hintText: 'رسالتك...'))),
                 IconButton(icon: Icon(Icons.send), onPressed: _sendMessage),
               ],
             ),
@@ -74,6 +76,3 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 }
-
-// اضافة عشان زرار الخروج يشتغل
-import 'auth_screen.dart';
