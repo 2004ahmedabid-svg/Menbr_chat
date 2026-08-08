@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace "com.example.menbr_chat"
-    compileSdkVersion 35
+    compileSdkVersion 34
 
     defaultConfig {
         applicationId "com.example.menbr_chat"
-        minSdkVersion 23  // مهم عشان Firebase
-        targetSdkVersion 35
+        minSdkVersion 23 
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
     }
