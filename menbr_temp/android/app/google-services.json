@@ -1,0 +1,28 @@
+{
+  "project_info": {
+    "project_number": "123456789",
+    "project_id": "menbr-chat-temp",
+    "storage_bucket": "menbr-chat-temp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123456789:android:abcdef123456",
+        "android_client_info": {
+          "package_name": "com.example.menbr_chat"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyTempKeyForBuild1234567890"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
