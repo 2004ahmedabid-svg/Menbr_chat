@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'chat_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -8,45 +9,52 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final _email = TextEditingController();
-  final _password = TextEditingController();
-  final _username = TextEditingController();
-  bool _isLogin = true;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isLoading = false;
 
-  void _submit() async {
+  Future<void> _login() async {
+    setState(() => _isLoading = true);
     try {
-      if (_isLogin) {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _email.text.trim(), 
-          password: _password.text.trim()
-        );
-      } else {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _email.text.trim(), 
-          password: _password.text.trim()
-        );
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(), 
+        password: _passwordController.text.trim());
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ChatScreen()));
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message ?? 'خطأ')));
     }
+    setState(() => _isLoading = false);
+  }
+
+  Future<void> _register() async {
+    setState(() => _isLoading = true);
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(), 
+        password: _passwordController.text.trim());
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ChatScreen()));
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message ?? 'خطأ')));
+    }
+    setState(() => _isLoading = false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_isLogin ? 'تسجيل دخول' : 'انشاء حساب')),
+      appBar: AppBar(title: Text('Menbr Chat')),
       body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            if(!_isLogin) TextField(controller: _username, decoration: InputDecoration(labelText: 'المعرف @ بدون ارقام')),
-            TextField(controller: _email, decoration: InputDecoration(labelText: 'الايميل')),
-            TextField(controller: _password, obscureText: true, decoration: InputDecoration(labelText: 'كلمة السر')),
-            const SizedBox(height: 20),
-            ElevatedButton(onPressed: _submit, child: Text(_isLogin ? 'دخول' : 'تسجيل')),
-            TextButton(onPressed: () => setState(() => _isLogin = !_isLogin), child: Text(_isLogin ? 'ماعندك حساب؟ سجل' : 'عندك حساب؟ سجل دخول'))
-          ],
-        ),
+        padding: EdgeInsets.all(20),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          TextField(controller: _emailController, decoration: InputDecoration(labelText: 'الايميل')),
+          SizedBox(height: 10),
+          TextField(controller: _passwordController, decoration: InputDecoration(labelText: 'كلمة السر'), obscureText: true),
+          SizedBox(height: 20),
+          _isLoading ? CircularProgressIndicator() : Column(children: [
+            ElevatedButton(onPressed: _login, child: Text('دخول')),
+            TextButton(onPressed: _register, child: Text('تسجيل حساب جديد')),
+          ]),
+        ]),
       ),
     );
   }
