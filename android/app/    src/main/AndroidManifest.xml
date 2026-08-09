@@ -1,11 +1,8 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.menbr_chat">
-    
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:name="${applicationName}"
         android:label="Menbr_chat"
         android:icon="@mipmap/ic_launcher">
-        
         <activity
             android:name=".MainActivity"
             android:exported="true"
